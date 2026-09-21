@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Curriculum vitae of André Fernandes, front-end developer based in Coimbra, Portugal." />
+    <meta name="theme-color" content="#e9e9e5" />
+    <title>André Fernandes — Curriculum Vitae</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --ink: #1c2831;
+        --muted: #5d6870;
+        --rule: #d4d9d9;
+        --accent: #235f68;
+        --paper: #fffefa;
+        --canvas: #e9e9e5;
+      }
+
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        background: var(--canvas);
+        color: var(--ink);
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+        font-size: 12px;
+        line-height: 1.48;
+        -webkit-font-smoothing: antialiased;
+      }
+      a { color: inherit; text-decoration-color: #96a9ac; text-underline-offset: 2px; }
+      a:hover { color: var(--accent); }
+      a:focus-visible, button:focus-visible { outline: 3px solid #2b7681; outline-offset: 4px; }
+
+      .toolbar {
+        width: min(210mm, calc(100% - 32px));
+        margin: 24px auto 16px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+      }
+      .toolbar-label { color: #59646a; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; }
+      .toolbar-actions { display: flex; align-items: center; gap: 14px; }
+      .pdf-note { color: #59646a; font-size: 12px; }
+      .export-button {
+        appearance: none;
+        border: 1px solid #1c4550;
+        border-radius: 5px;
+        background: #1c4550;
+        color: #fff;
+        cursor: pointer;
+        font-family: inherit;
+        font-size: 12px;
+        font-weight: 600;
+        line-height: 1;
+        padding: 11px 16px;
+        transition: background .15s ease, transform .15s ease;
+      }
+      .export-button:hover { background: #2b626d; transform: translateY(-1px); }
+      .export-button svg { width: 15px; height: 15px; vertical-align: -3px; margin-right: 7px; }
+
+      .document { padding-bottom: 30px; }
+      .page {
+        width: 210mm;
+        min-height: 297mm;
+        margin: 0 auto 20px;
+        padding: 17mm 18mm 15mm;
+        background: var(--paper);
+        box-shadow: 0 12px 36px rgb(23 34 41 / .13), 0 1px 3px rgb(23 34 41 / .11);
+        display: flex;
+        flex-direction: column;
+      }
+      .page:last-child { margin-bottom: 0; }
+      .eyebrow {
+        margin: 0;
+        color: var(--accent);
+        font-size: 9px;
+        font-weight: 750;
+        letter-spacing: .18em;
+        text-transform: uppercase;
+      }
+      .masthead {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 20px;
+        padding-bottom: 20px;
+        border-bottom: 2px solid var(--ink);
+      }
+      h1 {
+        margin: 7px 0 4px;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 36px;
+        line-height: 1.06;
+        font-weight: 400;
+        letter-spacing: -.035em;
+      }
+      .role { margin: 0; color: var(--accent); font-size: 16px; font-weight: 600; }
+      .location { margin: 7px 0 0; color: var(--muted); }
+      .contact { padding: 2px 0 0; text-align: right; font-size: 10.5px; line-height: 1.75; }
+      .contact a { display: block; white-space: nowrap; text-decoration: none; }
+      .contact a:hover { text-decoration: underline; }
+
+      .intro { padding: 17px 0 16px; }
+      .intro p { max-width: 67ch; margin: 0; font-size: 12.5px; line-height: 1.56; }
+      .section-heading {
+        display: flex;
+        align-items: baseline;
+        gap: 15px;
+        margin: 8px 0 13px;
+        padding-bottom: 7px;
+        border-bottom: 1px solid var(--rule);
+      }
+      .section-heading h2 {
+        margin: 0;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 20px;
+        font-weight: 400;
+        letter-spacing: -.02em;
+      }
+      .section-heading span { color: var(--muted); font-size: 10px; }
+      .job { display: grid; grid-template-columns: 95px 1fr; gap: 17px; margin-bottom: 16px; break-inside: avoid; }
+      .job:last-child { margin-bottom: 0; }
+      .job-date { color: var(--muted); font-size: 10px; font-weight: 600; letter-spacing: .02em; padding-top: 3px; }
+      .job h3 { margin: 0; font-size: 13px; line-height: 1.3; }
+      .job-title { margin: 2px 0 7px; color: var(--accent); font-weight: 600; font-size: 11px; }
+      .job p { margin: 0 0 6px; }
+      ul { margin: 5px 0 0; padding-left: 16px; }
+      li { padding-left: 2px; margin: 0 0 4px; }
+      li::marker { color: var(--accent); }
+      .highlight { border-left: 2px solid var(--accent); padding: 1px 0 1px 11px; margin-top: 9px; }
+      .highlight p { margin: 0 0 5px; }
+      .highlight p:last-child { margin-bottom: 0; }
+      .highlight strong { color: var(--accent); font-size: 10px; text-transform: uppercase; letter-spacing: .08em; }
+      .page-footer {
+        display: flex;
+        justify-content: space-between;
+        gap: 15px;
+        margin-top: auto;
+        padding-top: 12px;
+        border-top: 1px solid var(--rule);
+        color: var(--muted);
+        font-size: 9px;
+        letter-spacing: .04em;
+      }
+
+      .continuation {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 20px;
+        padding-bottom: 12px;
+        border-bottom: 2px solid var(--ink);
+      }
+      .continuation strong { font-family: Georgia, "Times New Roman", serif; font-size: 20px; font-weight: 400; }
+      .continuation span { color: var(--muted); font-size: 10px; letter-spacing: .08em; text-transform: uppercase; }
+      .two-col { display: grid; grid-template-columns: 1.1fr .9fr; gap: 24px; }
+      .compact .section-heading { margin-top: 16px; }
+      .compact .job { display: block; margin-bottom: 15px; }
+      .compact .job-date { padding: 0; margin: 0 0 3px; }
+      .compact .job-title { margin-bottom: 5px; }
+      .compact ul { margin-top: 4px; }
+      .small-section { break-inside: avoid; margin: 0 0 15px; }
+      .small-section h3 { margin: 0 0 4px; font-size: 11px; line-height: 1.35; }
+      .small-section p { margin: 0; }
+      .small-section .meta { color: var(--muted); font-size: 10px; }
+      .small-section a { overflow-wrap: anywhere; }
+      .skill-list { display: grid; grid-template-columns: 87px 1fr; gap: 8px 12px; margin: 0; }
+      .skill-list dt { color: var(--accent); font-size: 10px; font-weight: 700; }
+      .skill-list dd { margin: 0; font-size: 10.5px; }
+      .proof-links { margin-top: 4px; }
+      .proof-links a { display: block; width: fit-content; margin: 0 0 5px; font-size: 10px; }
+      .end-note { color: var(--muted); font-size: 10px; }
+
+      @media (max-width: 850px) {
+        .page { width: min(100%, 210mm); min-height: auto; }
+      }
+      @media (max-width: 580px) {
+        .toolbar { width: calc(100% - 24px); margin: 12px auto; }
+        .toolbar-label, .pdf-note { display: none; }
+        .toolbar-actions { margin-left: auto; }
+        .page { padding: 26px 22px; margin-bottom: 12px; box-shadow: 0 3px 12px rgb(23 34 41 / .1); }
+        .masthead { grid-template-columns: 1fr; gap: 10px; }
+        h1 { font-size: 32px; }
+        .contact { text-align: left; }
+        .contact a { white-space: normal; }
+        .job { grid-template-columns: 1fr; gap: 3px; }
+        .two-col { grid-template-columns: 1fr; gap: 0; }
+        .continuation span { display: none; }
+      }
+      @page { size: A4; margin: 0; }
+      @media print {
+        html, body { width: 210mm; margin: 0; padding: 0; background: white; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        .toolbar { display: none; }
+        .document { padding: 0; }
+        .page { width: 210mm; height: 297mm; min-height: 297mm; margin: 0; padding: 17mm 18mm 15mm; box-shadow: none; break-after: page; page-break-after: always; }
+        .page:last-child { break-after: auto; page-break-after: auto; }
+        a { text-decoration: none; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="toolbar" aria-label="CV actions">
+      <span class="toolbar-label">André Fernandes / CV</span>
+      <div class="toolbar-actions">
+        <span class="pdf-note">A4 document · 2 pages</span>
+        <button class="export-button" type="button" onclick="window.print()" title="Choose Save as PDF in the print dialog" aria-label="Export CV to PDF using browser print dialog">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0 4-4m-4 4-4-4M5 16v4h14v-4" /></svg>
+          Export to PDF
+        </button>
+      </div>
+    </div>
+
+    <main class="document" aria-label="Curriculum vitae">
+      <article class="page" aria-label="CV page 1">
+        <header class="masthead">
+          <div>
+            <p class="eyebrow">Curriculum Vitae</p>
+            <h1>André Fernandes</h1>
+            <p class="role">Front-end Developer</p>
+            <p class="location">Coimbra, Portugal · Available</p>
+          </div>
+          <address class="contact" style="font-style: normal">
+            <a href="mailto:andrefcasimiro@gmail.com">andrefcasimiro@gmail.com</a>
+            <a href="tel:+351919081580">+351 919 081 580</a>
+            <a href="https://www.linkedin.com/in/andrefcasimiro/" target="_blank" rel="noopener noreferrer">linkedin.com/in/andrefcasimiro</a>
+            <a href="https://github.com/andrefernandes-95" target="_blank" rel="noopener noreferrer">github.com/andrefernandes-95</a>
+          </address>
+        </header>
+
+        <section class="intro" aria-labelledby="profile-title">
+          <h2 id="profile-title" class="eyebrow" style="margin-bottom: 7px">Profile</h2>
+          <p>Front-end developer with seven years of experience building thoughtful, user-centred interfaces with React and TypeScript. Comfortable across paradigms, from functional JavaScript to object-oriented backend development with Java and Spring.</p>
+        </section>
+
+        <section aria-labelledby="experience-title">
+          <div class="section-heading"><h2 id="experience-title">Professional experience</h2><span>Selected roles</span></div>
+
+          <article class="job">
+            <div class="job-date">Oct 2019 – Present</div>
+            <div>
+              <h3>VAKT <span style="font-weight: 400">· Global commodity trading platform</span></h3>
+              <p class="job-title">Software Developer · Remote</p>
+              <ul>
+                <li>Developed and maintained front-end applications with React, Redux, TypeScript and Webpack.</li>
+                <li>Migrated class components and higher-order components to React Hooks, improving clarity and maintainability.</li>
+                <li>Managed the Storybook design system and led the adoption of Fluent UI 8 and 9.</li>
+                <li>Maintained frontend dependencies and build tooling, including React, Redux, TypeScript, Jest and Webpack.</li>
+                <li>Implemented designs with the UI designer and supported QA with Cucumber end-to-end tests.</li>
+                <li>Maintained Java 17 and Spring services and database migrations with Flyway.</li>
+              </ul>
+              <div class="highlight">
+                <p><strong>Selected impact</strong></p>
+                <p>Replaced nested modal flows with URL-based pages, earning positive client feedback for the improved experience.</p>
+                <p>Enabled web apps to connect to shared testing environments, making server-related bugs easier to reproduce and fix.</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="job">
+            <div class="job-date">Oct 2018 – Sep 2019</div>
+            <div>
+              <h3>Awayco <span style="font-weight: 400">· Surf gear rental platform</span></h3>
+              <p class="job-title">Front-end Developer · Oeiras, Portugal</p>
+              <ul>
+                <li>Built and maintained three React applications: a customer booking app, a partner inventory and reservation app, and an internal operations tool.</li>
+                <li>Worked with React, Redux, GraphQL, Styled Components and Flow.</li>
+                <li>Contributed to Node.js and Express services using GraphQL, Knex and PostgreSQL.</li>
+              </ul>
+            </div>
+          </article>
+        </section>
+
+        <footer class="page-footer"><span>ANDRÉ FERNANDES · CURRICULUM VITAE</span><span>01 / 02</span></footer>
+      </article>
+
+      <article class="page compact" aria-label="CV page 2">
+        <header class="continuation"><strong>André Fernandes</strong><span>Curriculum Vitae · continued</span></header>
+        <div class="two-col">
+          <div>
+            <section aria-labelledby="additional-title">
+              <div class="section-heading"><h2 id="additional-title">Additional experience</h2></div>
+              <article class="job">
+                <div class="job-date">2020 – 2022 · Contract</div>
+                <h3>ANJB <span style="font-weight: 400">· National Basketball Referees Association</span></h3>
+                <p class="job-title">Full-stack Developer</p>
+                <p>Built a React e-commerce app with MB Way integration and a back-office system for news, stock and subscriptions, supported by a NestJS and GraphQL backend deployed on Google Cloud.</p>
+              </article>
+              <article class="job">
+                <div class="job-date">Jun 2018 – Aug 2018</div>
+                <h3>Chat Sonho <span style="font-weight: 400">· Mental health community chat</span></h3>
+                <p class="job-title">Front-end Developer · Lisbon, Portugal</p>
+                <p>Implemented Vue.js sign-in and sign-up flows for a gamified chat app, and contributed to a Laravel 4 backend with Socket.io, MariaDB and Docker.</p>
+              </article>
+            </section>
+
+            <section aria-labelledby="skills-title">
+              <div class="section-heading"><h2 id="skills-title">Technical skills</h2></div>
+              <dl class="skill-list">
+                <dt>Front end</dt><dd>React, Redux, TypeScript, JavaScript, HTML, CSS, Vue.js, Next.js, Web Components, accessibility</dd>
+                <dt>Data & state</dt><dd>GraphQL, React Query, Zustand, REST APIs</dd>
+                <dt>Testing</dt><dd>Jest, React Testing Library, Cucumber</dd>
+                <dt>Back end</dt><dd>Node.js, Express, NestJS, Java Spring, C#, PHP, Laravel, TypeORM, JWT, Keycloak</dd>
+                <dt>Databases</dt><dd>PostgreSQL, MongoDB, DynamoDB, Flyway</dd>
+                <dt>Delivery</dt><dd>Docker, GitHub Actions, Terraform, Firebase, Google Cloud, AWS</dd>
+                <dt>UI systems</dt><dd>Storybook, Fluent UI, Material UI, Styled Components, Figma</dd>
+              </dl>
+            </section>
+          </div>
+
+          <div>
+            <section aria-labelledby="education-title">
+              <div class="section-heading"><h2 id="education-title">Education</h2></div>
+              <div class="small-section">
+                <h3>Multimedia Applications and Videogames</h3>
+                <p>Universidade Lusófona, Lisbon</p>
+                <p class="meta">2014 – 2017</p>
+              </div>
+            </section>
+
+            <section aria-labelledby="learning-title">
+              <div class="section-heading"><h2 id="learning-title">Continuing education</h2></div>
+              <div class="small-section">
+                <h3>Algorithms and Complexity</h3>
+                <p>NAU · 25-hour course</p>
+                <p class="meta">Completed September 2026</p>
+                <a href="https://lms.nau.edu.pt/certificates/daecf42bb82b425bb76a4449121e4f29" target="_blank" rel="noopener noreferrer">View certificate ↗</a>
+              </div>
+            </section>
+
+            <section aria-labelledby="projects-title">
+              <div class="section-heading"><h2 id="projects-title">Selected work</h2></div>
+              <div class="small-section">
+                <h3>Cacildes Adventure <span class="meta">· 2024</span></h3>
+                <p>Published game</p>
+                <a href="https://store.steampowered.com/app/2617740/Cacildes_Adventure/" target="_blank" rel="noopener noreferrer">View on Steam ↗</a>
+              </div>
+              <div class="small-section">
+                <h3>Bluesky</h3>
+                <p>Open-source contributions to the social app.</p>
+                <div class="proof-links">
+                  <a href="https://github.com/bluesky-social/social-app/pull/7649" target="_blank" rel="noopener noreferrer">Pull request #7649 ↗</a>
+                  <a href="https://github.com/bluesky-social/social-app/pull/7655" target="_blank" rel="noopener noreferrer">Pull request #7655 ↗</a>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+        <footer class="page-footer"><span>ANDRÉ FERNANDES · COIMBRA, PORTUGAL</span><span>02 / 02</span></footer>
+      </article>
+    </main>
+  </body>
+</html>
